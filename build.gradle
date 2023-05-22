@@ -9,7 +9,7 @@ buildscript {
         version_core = "1.11.0-alpha04"
         version_coil = "2.3.0"
         version_media3 = "1.0.1"
-
+        room_version = "2.5.1"
         target_sdk = 33
         min_sdk = 29
     }
