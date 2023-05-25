@@ -1,5 +1,6 @@
 package com.uolimzhanov.businesscard.model.repository
 
+import androidx.room.Query
 import com.uolimzhanov.businesscard.model.database.BadgeDatabase
 import com.uolimzhanov.businesscard.model.entity.Badge
 import kotlinx.coroutines.flow.Flow
@@ -20,7 +21,18 @@ class BadgeRepository @Inject constructor(private val database: BadgeDatabase) {
         return database.dao.getBadgeById(id)
     }
 
-    fun getCBadgeOrdered() : Flow<List<Badge>> {
-        return database.dao.getCBadgeOrdered()
+    fun getBadgesOrderedByName() : Flow<List<Badge>> {
+        return database.dao.getBadgesOrderedByName()
+    }
+
+    fun getBadgesOrderedByNameAsc() : Flow<List<Badge>> {
+        return database.dao.getBadgesOrderedByNameAsc()
+    }
+    fun getBadgesOrderedByDate() : Flow<List<Badge>> {
+        return database.dao.getBadgesOrderedByDate()
+    }
+
+    fun getBadgesOrderedByDateAsc() : Flow<List<Badge>> {
+        return database.dao.getBadgesOrderedByDateAsc()
     }
 }

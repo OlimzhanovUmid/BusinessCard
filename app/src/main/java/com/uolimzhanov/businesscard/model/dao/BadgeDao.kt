@@ -18,6 +18,15 @@ interface BadgeDao {
     @Query("SELECT * FROM Badge WHERE id = :id")
     fun getBadgeById(id: Int) : Badge?
 
-    @Query("SELECT * FROM Badge")
-    fun getCBadgeOrdered() : Flow<List<Badge>>
+    @Query("SELECT * FROM Badge ORDER BY badgeName ASC")
+    fun getBadgesOrderedByName() : Flow<List<Badge>>
+
+    @Query("SELECT * FROM Badge ORDER BY badgeName DESC")
+    fun getBadgesOrderedByNameAsc() : Flow<List<Badge>>
+    @Query("SELECT * FROM Badge ORDER BY badgeDate ASC")
+    fun getBadgesOrderedByDate() : Flow<List<Badge>>
+
+    @Query("SELECT * FROM Badge ORDER BY badgeDate DESC")
+    fun getBadgesOrderedByDateAsc() : Flow<List<Badge>>
+
 }
