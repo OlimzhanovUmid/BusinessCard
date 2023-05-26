@@ -2,4 +2,5 @@
     <string name="app_name">BusinessCard</string>
     <string name="sort_name">Name</string>
     <string name="sort_date">Date</string>
+    <string name="sort_order">Sort Order</string>
 </resources>

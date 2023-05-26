@@ -107,6 +107,8 @@ dependencies {
     androidTestImplementation "com.google.dagger:hilt-android-testing:$version_hilt"
     kaptAndroidTest "com.google.dagger:hilt-android-compiler:$version_hilt"
 
+    implementation "io.coil-kt:coil-compose:$version_coil"
+
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 }

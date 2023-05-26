@@ -1,19 +1,92 @@
 package com.uolimzhanov.businesscard.ui.generic
 
 import android.content.res.Configuration
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import coil.compose.SubcomposeAsyncImage
+import com.uolimzhanov.businesscard.R
 import com.uolimzhanov.businesscard.model.entity.Badge
 import com.uolimzhanov.businesscard.ui.theme.BusinessCardTheme
-import java.time.LocalDateTime
 
 @Composable
 fun BadgeItem(
-    badge: Badge
+    badge: Badge,
+    modifier: Modifier = Modifier
 ) {
-    Text(text = badge.badgeDate.toString())
+    Card(
+        modifier = modifier.aspectRatio(0.66f)
+    ){
+        Box(modifier = Modifier.fillMaxSize()){
+            Column(verticalArrangement = Arrangement.Center, modifier = Modifier.fillMaxSize()) {
+                SubcomposeAsyncImage(
+                    model = badge.badgeUrl,
+                    contentScale = ContentScale.FillBounds,
+                    error = {
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                imageVector = Icons.Filled.AccountCircle,
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.onSecondaryContainer.copy(
+                                    alpha = 0.2f
+                                ),
+                                modifier = Modifier.fillMaxSize(0.7f)
+                            )
+                        }
+                    },
+                    contentDescription = null,
+                    modifier = Modifier.fillMaxSize().weight(6f)
+                        .background(color = MaterialTheme.colorScheme.secondaryContainer)
+                )
+                Text(
+                    text = badge.badgeName,
+                    style = MaterialTheme.typography.titleMedium,
+                    textAlign = TextAlign.Center,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier
+                        .weight(2f)
+                        .fillMaxWidth()
+                        .padding(4.dp)
+                )
+                Text(
+                    text = badge.badgeDate,
+                    style = MaterialTheme.typography.bodyMedium,
+                    textAlign = TextAlign.Center,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f)
+                        .padding(4.dp)
+                )
+            }
+        }
+    }
 }
 
 @Preview(name = "Light", showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_NO)
@@ -25,8 +98,8 @@ fun BadgeItemPreview(){
             val badge = Badge(
                 "",
                 "Installed Studio",
-                "InstalledStudio",
-                LocalDateTime.parse("2012.12.03"),
+                "Installed Studio",
+                "31.01.2021",
                 true
             )
             BadgeItem(badge = badge)
