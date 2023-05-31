@@ -1,5 +1,6 @@
 package com.uolimzhanov.businesscard.ui
 
+import android.util.Log
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -32,12 +33,14 @@ import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.uolimzhanov.businesscard.R
 import com.uolimzhanov.businesscard.model.BadgeEvent
+import com.uolimzhanov.businesscard.model.repository.UserRepository
 import com.uolimzhanov.businesscard.ui.screens.ContactsScreen
 import com.uolimzhanov.businesscard.ui.screens.HomeScreen
 import com.uolimzhanov.businesscard.ui.screens.InfoScreen
 import com.uolimzhanov.businesscard.ui.screens.Screen
 import com.uolimzhanov.businesscard.ui.screens.SortOrderMenu
 import com.uolimzhanov.businesscard.viewmodels.BadgeViewModel
+import timber.log.Timber
 
 @OptIn(ExperimentalAnimationApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -52,7 +55,7 @@ fun AppContainer(
     val selectedDestination =
         navBackStackEntry?.destination?.route ?: Screen.Home.route
     var sortMenuExpanded by remember { mutableStateOf(false) }
-
+    Timber.tag("State").d(state.badges.toString())
     Scaffold(
         topBar = {
             MediumTopAppBar(
@@ -90,7 +93,7 @@ fun AppContainer(
                 Screen.Contacts
             )
             NavigationBar {
-                items.forEach{item ->
+                items.forEach { item ->
                     NavigationBarItem(
                         selected = selectedDestination == item.route,
                         onClick = {
@@ -122,21 +125,29 @@ fun AppContainer(
                 HomeScreen(
                     state = state,
                     onEvent = viewModel::onEvent,
-                    nestedScroll = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-                    paddingValues
+                    modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+                    paddingValues = paddingValues
                 )
             }
             composable(route = Screen.Info.route,
                 enterTransition = { fadeIn(animationSpec = tween(500)) },
                 exitTransition = { fadeOut(animationSpec = tween(500)) }
-            ){
-                InfoScreen(Modifier.nestedScroll(scrollBehavior.nestedScrollConnection), Modifier.nestedScroll(scrollBehavior.nestedScrollConnection))
+            ) {
+                InfoScreen(
+                    modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+                    paddingValues = paddingValues
+                )
             }
-            composable(route = Screen.Contacts.route,
+            composable(
+                route = Screen.Contacts.route,
                 enterTransition = { fadeIn(animationSpec = tween(500)) },
                 exitTransition = { fadeOut(animationSpec = tween(500)) }
-            ){
-                ContactsScreen(Modifier.nestedScroll(scrollBehavior.nestedScrollConnection))
+            ) {
+                ContactsScreen(
+                    user = UserRepository.user,
+                    modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+                    paddingValues = paddingValues
+                )
             }
         }
     }

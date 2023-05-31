@@ -10,7 +10,9 @@ import kotlinx.parcelize.Parcelize
 data class Badge(
     val badgeUrl: String,
     val badgeName: String,
+    val badgeNameRu: String,
     val badgeDescription: String,
+    val badgeDescriptionRu: String,
     val badgeDate: String,
     val isFavorite: Boolean,
     @PrimaryKey

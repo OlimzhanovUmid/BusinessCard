@@ -16,7 +16,7 @@ android {
         targetSdk target_sdk
         versionCode 1
         versionName "1.0.0"
-        archivesBaseName = "AudioPet"
+        archivesBaseName = "Business Card"
         resourceConfigurations = ['en', 'ru']
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -57,6 +57,7 @@ android {
         }
     }
 
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
@@ -67,6 +68,7 @@ android {
     }
 
     buildFeatures {
+        buildConfig true
         compose true
     }
 
@@ -74,10 +76,14 @@ android {
         kotlinCompilerExtensionVersion "1.4.7"
     }
 }
+kapt {
+    correctErrorTypes true
+}
+
 
 dependencies {
     implementation "androidx.core:core-ktx:$version_core"
-    implementation "androidx.activity:activity-compose:1.7.1"
+    implementation "androidx.activity:activity-compose:1.7.2"
     implementation "androidx.lifecycle:lifecycle-runtime-compose:2.6.1"
     implementation "androidx.compose.ui:ui:$version_compose"
     implementation "androidx.compose.ui:ui-tooling-preview:$version_compose"
@@ -87,12 +93,14 @@ dependencies {
     implementation "androidx.startup:startup-runtime:1.2.0-alpha02"
     implementation "androidx.work:work-runtime-ktx:$version_work"
     implementation "androidx.core:core-splashscreen:1.0.1"
-    implementation "androidx.window:window:1.1.0-rc01"
+    implementation "androidx.window:window:1.2.0-alpha01"
+    implementation "androidx.datastore:datastore-preferences:1.1.0-alpha04"
+    implementation "androidx.palette:palette-ktx:1.0.0"
     implementation "com.google.accompanist:accompanist-permissions:$version_accompanist"
-    implementation "com.google.accompanist:accompanist-navigation-material:$version_accompanist"
     implementation "com.google.accompanist:accompanist-navigation-animation:$version_accompanist"
     implementation "com.google.accompanist:accompanist-drawablepainter:$version_accompanist"
     implementation "com.google.accompanist:accompanist-systemuicontroller:$version_accompanist"
+    implementation "androidx.compose.material:material-icons-extended"
 
     implementation "com.google.dagger:hilt-android:$version_hilt"
     kapt "com.google.dagger:hilt-compiler:$version_hilt"
@@ -107,7 +115,11 @@ dependencies {
     androidTestImplementation "com.google.dagger:hilt-android-testing:$version_hilt"
     kaptAndroidTest "com.google.dagger:hilt-android-compiler:$version_hilt"
 
+
+    implementation "com.jakewharton.timber:timber:5.0.1"
+
     implementation "io.coil-kt:coil-compose:$version_coil"
+    implementation "io.coil-kt:coil-svg:$version_coil"
 
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
