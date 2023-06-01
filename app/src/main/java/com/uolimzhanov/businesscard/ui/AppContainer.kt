@@ -113,7 +113,11 @@ fun AppContainer(
                             Icon(imageVector = item.icon, contentDescription = item.route)
                         },
                         label = {
-                            Text(text = item.route)
+                            Text(text = when(item.route){
+                                "Home" -> stringResource(id = R.string.home)
+                                "Info" -> stringResource(id = R.string.info)
+                                else -> stringResource(id = R.string.contacts)
+                            })
                         }
                     )
                 }
