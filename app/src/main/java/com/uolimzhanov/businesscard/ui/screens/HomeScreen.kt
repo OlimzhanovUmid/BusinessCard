@@ -114,14 +114,14 @@ fun HomeScreen(
                                 deleteBadgeDialog = !deleteBadgeDialog
                             }
                         ) {
-                            Text(text = "Yes")
+                            Text(text = stringResource(R.string.yes))
                         }
                         Button(
                             onClick = {
                                 deleteBadgeDialog = !deleteBadgeDialog
                             }
                         ) {
-                            Text(text = "No")
+                            Text(text = stringResource(R.string.no))
                         }
                     }
                 }
