@@ -1,6 +1,5 @@
 package com.uolimzhanov.businesscard.ui.screens
 
-import android.widget.Space
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
@@ -18,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
@@ -71,25 +71,23 @@ fun HomeScreen(
         modifier = modifier,
         contentPadding = paddingValues,
         content = {
-            items(state.badges.size) {
-                state.badges.forEach { badge ->
-                    BadgeItem(
-                        badge = badge,
-                        modifier = Modifier
-                            .padding(2.dp)
-                            .combinedClickable(
-                                onClick = {
-                                    badgeId = badge.id!!
-                                    onEvent(BadgeEvent.ShowBottomSheet)
-                                },
-                                onLongClick = {
-                                    badgeId = badge.id!!
-                                    deleteBadgeDialog = true
-                                }
-                            ),
-                        onEvent = onEvent
-                    )
-                }
+            items(state.badges){badge ->
+                BadgeItem(
+                    badge = badge,
+                    modifier = Modifier
+                        .padding(2.dp)
+                        .combinedClickable(
+                            onClick = {
+                                badgeId = badge.id!!
+                                onEvent(BadgeEvent.ShowBottomSheet)
+                            },
+                            onLongClick = {
+                                badgeId = badge.id!!
+                                deleteBadgeDialog = true
+                            }
+                        ),
+                    onEvent = onEvent
+                )
             }
         }
     )
