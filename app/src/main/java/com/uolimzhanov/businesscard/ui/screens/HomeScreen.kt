@@ -144,7 +144,7 @@ fun HomeScreen(
                     "ru" -> true
                     else -> false
                 }
-                Card(
+                Column(
                     modifier = modifier.aspectRatio(0.66f)
                 ){
                     Box(modifier = Modifier.fillMaxSize()){
