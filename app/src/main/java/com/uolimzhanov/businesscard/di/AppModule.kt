@@ -20,5 +20,5 @@ object AppModule {
             context,
             BadgeDatabase::class.java,
             BadgeDatabase.DATABASE_NAME
-        ).build()
+        ).createFromAsset("database/badges_db.db").build()
 }
