@@ -1,8 +1,8 @@
 buildscript {
     ext {
         version_kotlin = "1.8.21"
-        version_compose = "1.5.0-alpha04"
-        version_m3 = "1.2.0-alpha01"
+        version_compose = "1.5.0-beta01"
+        version_m3 = "1.2.0-alpha02"
         version_accompanist = "0.31.2-alpha"
         version_hilt = "2.46.1"
         version_work = "2.8.1"
