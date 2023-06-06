@@ -6,6 +6,7 @@ import com.uolimzhanov.businesscard.model.BadgeEvent
 import com.uolimzhanov.businesscard.model.entity.SortOrder
 import com.uolimzhanov.businesscard.model.repository.BadgeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
@@ -15,6 +16,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class BadgeViewModel @Inject constructor(
     private val repository: BadgeRepository
@@ -59,9 +61,6 @@ class BadgeViewModel @Inject constructor(
             }
             is BadgeEvent.UnLikeBadge -> {
                 viewModelScope.launch {
-                    _state.update { it.copy(
-                        isFavorite = !it.isFavorite
-                    ) }
                     repository.upsertBadge(
                         event.badge.copy(
                             isFavorite = !event.badge.isFavorite
