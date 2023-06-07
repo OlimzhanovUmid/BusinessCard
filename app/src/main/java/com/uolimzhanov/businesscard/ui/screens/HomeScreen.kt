@@ -7,18 +7,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Favorite
@@ -26,7 +22,6 @@ import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material.icons.outlined.HeartBroken
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
-import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -53,7 +48,8 @@ import com.uolimzhanov.businesscard.ui.generic.BadgeItem
 import com.uolimzhanov.businesscard.viewmodels.BadgeState
 import java.util.Locale
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
+
+@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     state: BadgeState,
@@ -94,40 +90,32 @@ fun HomeScreen(
     )
     if(deleteBadgeDialog){
         val badgeToDelete = state.badges.find { it.id == badgeId }
-        AlertDialog(onDismissRequest = { deleteBadgeDialog = !deleteBadgeDialog }) {
-            Card(shape = RoundedCornerShape(15))  {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Row(
-                        modifier = Modifier.padding(8.dp), verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(imageVector = Icons.Default.Warning, contentDescription = "")
-                        Text(
-                            text = stringResource(R.string.delete_badge),
-                            style = MaterialTheme.typography.headlineMedium,
-                        )
+        AlertDialog(
+            onDismissRequest = { deleteBadgeDialog = !deleteBadgeDialog },
+            icon = { Icon(imageVector = Icons.Default.Warning, contentDescription = "") },
+            title = { Text(
+                text = stringResource(R.string.delete_badge),
+             ) },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        badgeToDelete?.let { BadgeEvent.DeleteBadge(it) }
+                            ?.let { onEvent(it) }
+                        deleteBadgeDialog = !deleteBadgeDialog
                     }
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
-                        Button(
-                            onClick = {
-                                badgeToDelete?.let { BadgeEvent.DeleteBadge(it) }
-                                    ?.let { onEvent(it) }
-                                deleteBadgeDialog = !deleteBadgeDialog
-                            }
-                        ) {
-                            Text(text = stringResource(R.string.yes))
-                        }
-                        Button(
-                            onClick = {
-                                deleteBadgeDialog = !deleteBadgeDialog
-                            }
-                        ) {
-                            Text(text = stringResource(R.string.no))
-                        }
-                    }
+                ) {
+                    Text(text = stringResource(R.string.yes))
                 }
-            }
-        }
+            },
+            dismissButton = {
+                Button(
+                    onClick = {
+                        deleteBadgeDialog = !deleteBadgeDialog
+                    }
+                ) {
+                    Text(text = stringResource(R.string.no))
+                }
+            })
     }
 
     val sheetState = rememberModalBottomSheetState(
