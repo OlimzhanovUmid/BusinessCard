@@ -1,6 +1,6 @@
-# Bussiness Card
+# Business Card
 
-A demo Bussiness Card application using Сompose and Hilt based on modern Android tech-stacks and MVVM architecture. This project is used to test newest available androidx libraries.
+Business Card application using Compose and Hilt based on modern Android tech-stacks and MVVM architecture. This project is used to test newest available androidx libraries.
 
 ## Download
 
