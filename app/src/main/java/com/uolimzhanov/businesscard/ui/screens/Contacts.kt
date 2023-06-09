@@ -89,7 +89,7 @@ fun ContactsScreen(
                 },
                 supportingContent = {
                     Text(
-                        text = "a.k.a. d.sixxx",
+                        text = "d.sixxx",
                         style = MaterialTheme.typography.bodyLarge,
                         textDecoration = TextDecoration.Underline,
                         fontWeight = FontWeight.Normal,
