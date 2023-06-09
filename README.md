@@ -4,7 +4,7 @@ Business Card application using Compose and Hilt based on modern Android tech-st
 
 ## Download
 
-At the moment, you can only build a project on your own.
+Go to the [Releases](https://github.com/OlimzhanovUmid/BusinessCard/releases/) to download the latest APK.
 
 ## Tech stack & Open-source libraries
 
