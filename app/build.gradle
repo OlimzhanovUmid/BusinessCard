@@ -4,6 +4,7 @@ plugins {
     id 'com.google.dagger.hilt.android'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
+    id 'com.google.devtools.ksp'
 }
 
 android {
@@ -73,7 +74,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion "1.4.7"
+        kotlinCompilerExtensionVersion "1.5.3"
     }
 }
 kapt {
@@ -83,8 +84,8 @@ kapt {
 
 dependencies {
     implementation "androidx.core:core-ktx:$version_core"
-    implementation "androidx.activity:activity-compose:1.7.2"
-    implementation "androidx.lifecycle:lifecycle-runtime-compose:2.6.1"
+    implementation "androidx.activity:activity-compose:1.8.0-alpha07"
+    implementation "androidx.lifecycle:lifecycle-runtime-compose:2.7.0-alpha01"
     implementation "androidx.compose.ui:ui:$version_compose"
     implementation "androidx.compose.ui:ui-tooling-preview:$version_compose"
     implementation "androidx.compose.ui:ui-util:$version_compose"
@@ -93,7 +94,7 @@ dependencies {
     implementation "androidx.startup:startup-runtime:1.2.0-alpha02"
     implementation "androidx.work:work-runtime-ktx:$version_work"
     implementation "androidx.core:core-splashscreen:1.0.1"
-    implementation "androidx.window:window:1.2.0-alpha01"
+    implementation "androidx.window:window:1.2.0-beta01"
     implementation "androidx.datastore:datastore-preferences:1.1.0-alpha04"
     implementation "androidx.palette:palette-ktx:1.0.0"
     implementation "com.google.accompanist:accompanist-permissions:$version_accompanist"
@@ -102,18 +103,18 @@ dependencies {
     implementation "com.google.accompanist:accompanist-systemuicontroller:$version_accompanist"
     implementation "androidx.compose.material:material-icons-extended"
 
-    implementation "com.google.dagger:hilt-android:$version_hilt"
-    kapt "com.google.dagger:hilt-compiler:$version_hilt"
-    implementation "androidx.hilt:hilt-work:1.0.0"
-    kapt "androidx.hilt:hilt-compiler:1.0.0"
-    implementation "androidx.hilt:hilt-navigation-compose:1.1.0-alpha01"
+    implementation "com.google.dagger:hilt-android:$version_dagger"
+    kapt "com.google.dagger:hilt-compiler:$version_dagger"
+    implementation "androidx.hilt:hilt-work:$version_hilt"
+    kapt "androidx.hilt:hilt-compiler:$version_hilt"
+    implementation "androidx.hilt:hilt-navigation-compose:$version_hilt"
 
     debugImplementation "androidx.compose.ui:ui-tooling:$version_compose"
-    androidTestImplementation "androidx.test.ext:junit-ktx:1.2.0-alpha01"
-    androidTestImplementation "androidx.test:runner:1.6.0-alpha02"
+    androidTestImplementation "androidx.test.ext:junit-ktx:1.2.0-beta01"
+    androidTestImplementation "androidx.test:runner:1.6.0-alpha04"
     androidTestImplementation "androidx.work:work-testing:$version_work"
-    androidTestImplementation "com.google.dagger:hilt-android-testing:$version_hilt"
-    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$version_hilt"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$version_dagger"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$version_dagger"
 
 
     implementation "com.jakewharton.timber:timber:5.0.1"
@@ -122,5 +123,5 @@ dependencies {
     implementation "io.coil-kt:coil-svg:$version_coil"
 
     implementation "androidx.room:room-ktx:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
+    ksp "androidx.room:room-compiler:$room_version"
 }
