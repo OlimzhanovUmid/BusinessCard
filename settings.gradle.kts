@@ -13,7 +13,6 @@ pluginManagement {
     plugins {
         id("com.android.application") version versionAgp apply false
         id("org.jetbrains.kotlin.android") version versionKotlin apply false
-        id("org.jetbrains.kotlin.kapt") version versionKotlin apply false
         id("com.google.dagger.hilt.android") version versionDagger apply false
         id("com.google.devtools.ksp") version versionKsp apply false
         id("org.jetbrains.kotlin.plugin.parcelize") version versionKotlin apply false

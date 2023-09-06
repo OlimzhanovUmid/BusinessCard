@@ -5,7 +5,6 @@ import java.util.Properties
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.kapt")
     id("com.google.dagger.hilt.android")
     id("org.jetbrains.kotlin.plugin.parcelize")
     id("com.google.devtools.ksp")
@@ -85,10 +84,6 @@ android {
 
 }
 
-kapt {
-    correctErrorTypes = true
-}
-
 dependencies {
     val versionCore: String by project
     val versionCompose: String by project
@@ -123,9 +118,9 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended")
 
     implementation("com.google.dagger:hilt-android:$versionDagger")
-    kapt("com.google.dagger:hilt-compiler:$versionDagger")
+    ksp("com.google.dagger:hilt-compiler:$versionDagger")
     implementation("androidx.hilt:hilt-work:$versionHilt")
-    kapt("androidx.hilt:hilt-compiler:$versionHilt")
+    ksp("androidx.hilt:hilt-compiler:$versionHilt")
     implementation("androidx.hilt:hilt-navigation-compose:$versionHilt")
 
     debugImplementation("androidx.compose.ui:ui-tooling:$versionCompose")
@@ -133,7 +128,7 @@ dependencies {
     androidTestImplementation("androidx.test:runner:1.6.0-alpha04")
     androidTestImplementation("androidx.work:work-testing:$versionWork")
     androidTestImplementation("com.google.dagger:hilt-android-testing:$versionDagger")
-    kaptAndroidTest("com.google.dagger:hilt-android-compiler:$versionDagger")
+    kspAndroidTest("com.google.dagger:hilt-android-compiler:$versionDagger")
 
 
     implementation("com.jakewharton.timber:timber:5.0.1")
