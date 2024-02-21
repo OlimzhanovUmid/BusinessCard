@@ -56,16 +56,19 @@ fun AppContainer(
         navBackStackEntry?.destination?.route ?: Screen.Home.route
     var sortMenuExpanded by remember { mutableStateOf(false) }
     Timber.tag("State").d(state.badges.toString())
+    val screens = listOf(
+        Screen.Home,
+        Screen.Info,
+        Screen.Contacts
+    )
     Scaffold(
         topBar = {
             LargeTopAppBar(
                 title = {
                     Text(
-                        text = when(selectedDestination){
-                            "Home" -> stringResource(id = R.string.home)
-                            "Info" -> stringResource(id = R.string.info)
-                            else -> stringResource(id = R.string.contacts)
-                        }
+                        text = stringResource(screens.first{
+                            it.route == selectedDestination
+                        }.textId)
                     )
                 },
                 modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -91,17 +94,12 @@ fun AppContainer(
             )
         },
         bottomBar = {
-            val items = listOf(
-                Screen.Home,
-                Screen.Info,
-                Screen.Contacts
-            )
             NavigationBar {
-                items.forEach { item ->
+                screens.forEach { screen ->
                     NavigationBarItem(
-                        selected = selectedDestination == item.route,
+                        selected = selectedDestination == screen.route,
                         onClick = {
-                            navController.navigate(item.route) {
+                            navController.navigate(screen.route) {
                                 popUpTo(navController.graph.findStartDestination().id) {
                                     saveState = true
                                 }
@@ -110,14 +108,10 @@ fun AppContainer(
                             }
                         },
                         icon = {
-                            Icon(imageVector = item.icon, contentDescription = item.route)
+                            Icon(imageVector = screen.icon, contentDescription = screen.route)
                         },
                         label = {
-                            Text(text = when(item.route){
-                                "Home" -> stringResource(id = R.string.home)
-                                "Info" -> stringResource(id = R.string.info)
-                                else -> stringResource(id = R.string.contacts)
-                            })
+                            Text(text = stringResource(screen.textId))
                         }
                     )
                 }
