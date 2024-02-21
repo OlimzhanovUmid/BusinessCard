@@ -34,7 +34,7 @@ fun SortOrderMenu(
             style = MaterialTheme.typography.labelSmall,
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
         )
-        SortOrder.values().forEach {
+        SortOrder.entries.forEach {
             DropdownMenuItem(
                 leadingIcon = {
                     Icon(
