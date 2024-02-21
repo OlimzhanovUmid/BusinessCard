@@ -1,6 +1,5 @@
 package com.uolimzhanov.businesscard.ui
 
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -40,9 +39,8 @@ import com.uolimzhanov.businesscard.ui.screens.InfoScreen
 import com.uolimzhanov.businesscard.ui.screens.Screen
 import com.uolimzhanov.businesscard.ui.screens.SortOrderMenu
 import com.uolimzhanov.businesscard.viewmodels.BadgeViewModel
-import timber.log.Timber
 
-@OptIn(ExperimentalAnimationApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppContainer(
 ) {
@@ -55,7 +53,6 @@ fun AppContainer(
     val selectedDestination =
         navBackStackEntry?.destination?.route ?: Screen.Home.route
     var sortMenuExpanded by remember { mutableStateOf(false) }
-    Timber.tag("State").d(state.badges.toString())
     val screens = listOf(
         Screen.Home,
         Screen.Info,
