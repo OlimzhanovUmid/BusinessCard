@@ -27,10 +27,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.google.accompanist.navigation.animation.AnimatedNavHost
-import com.google.accompanist.navigation.animation.composable
-import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import androidx.navigation.compose.rememberNavController
 import com.uolimzhanov.businesscard.R
 import com.uolimzhanov.businesscard.model.BadgeEvent
 import com.uolimzhanov.businesscard.model.repository.UserRepository
@@ -47,7 +47,7 @@ import timber.log.Timber
 fun AppContainer(
 ) {
     val viewModel = hiltViewModel<BadgeViewModel>()
-    val navController = rememberAnimatedNavController()
+    val navController = rememberNavController()
 
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     val state by viewModel.state.collectAsState()
@@ -124,7 +124,7 @@ fun AppContainer(
             }
         }
     ) { paddingValues ->
-        AnimatedNavHost(navController = navController, startDestination = Screen.Home.route) {
+        NavHost(navController = navController, startDestination = Screen.Home.route) {
             composable(
                 route = Screen.Home.route,
                 enterTransition = { fadeIn(animationSpec = tween(500)) },
