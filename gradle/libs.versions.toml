@@ -1,0 +1,99 @@
+[versions]
+sdk-min = "26"
+sdk-target = "34"
+agp = "8.2.2"
+kotlin = "1.9.22"
+ksp = "1.9.22-1.0.17"
+compose = "1.7.0-alpha02"
+compose-m3 = "1.2.0"
+compose-compiler = "1.5.8"
+accompanist = "0.35.0-alpha"
+dagger = "2.50"
+dagger-hilt = "1.2.0-rc01"
+work-manager = "2.10.0-alpha01"
+androidx-core = "1.13.0-alpha05"
+androidx-activity = "1.9.0-alpha03"
+androidx-lifecycle = "2.8.0-alpha01"
+androidx-navigation = "2.8.0-alpha02"
+androidx-startup = "1.2.0-alpha02"
+androidx-splashscreen = "1.1.0-alpha02"
+androidx-datastore = "1.1.0-beta01"
+androidx-palette = "1.0.0"
+androidx-room = "2.6.1"
+timber = "5.0.1"
+coil = "3.0.0-alpha04"
+junit = "1.2.0-alpha03"
+test-runner = "1.6.0-alpha06"
+
+[plugins]
+android-app = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+dagger = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
+
+[libraries]
+androidx-core = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
+androidx-activity = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
+androidx-lifecycle = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
+androidx-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
+androidx-startup = { module = "androidx.startup:startup-runtime", version.ref = "androidx-startup" }
+androidx-workmanager = { module = "androidx.work:work-runtime-ktx", version.ref = "work-manager" }
+androidx-workmanager-test = { module = "androidx.work:work-testing", version.ref = "work-manager" }
+androidx-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "androidx-splashscreen" }
+androidx-datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "androidx-datastore" }
+androidx-palette = { module = "androidx.palette:palette-ktx", version.ref = "androidx-palette" }
+
+compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+compose-ui-util = { module = "androidx.compose.ui:ui-util", version.ref = "compose" }
+compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose-m3" }
+compose-material3-window = { module = "androidx.compose.material3:material3-window-size-class", version.ref = "compose-m3" }
+material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "compose" }
+
+accompanist-navigation = { module = "com.google.accompanist:accompanist-navigation-material", version.ref = "accompanist" }
+
+dagger-android = { module = "com.google.dagger:hilt-android", version.ref = "dagger" }
+dagger-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "dagger" }
+dagger-test = { module = "com.google.dagger:hilt-android-testing", version.ref = "dagger" }
+dagger-test-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "dagger" }
+
+hilt-navigation = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "dagger-hilt" }
+hilt-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "dagger-hilt" }
+hilt-workmanager = { module = "androidx.hilt:hilt-work", version.ref = "dagger-hilt" }
+
+room = { module = "androidx.room:room-ktx", version.ref = "androidx-room" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "androidx-room" }
+room-test = { module = "androidx.room:room-testing", version.ref = "androidx-room" }
+
+coil = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+junit = { module = "androidx.test.ext:junit-ktx", version.ref = "junit" }
+test-runner = { module = "androidx.test:runner", version.ref = "test-runner" }
+
+[bundles]
+compose = [
+    "compose-ui",
+    "compose-ui-tooling-preview",
+    "compose-ui-util",
+    "compose-material3",
+    "compose-material3-window",
+    "material-icons-extended"
+]
+dagger-hilt = [
+    "dagger-android",
+    "hilt-navigation",
+    "hilt-workmanager"
+]
+dagger-hilt-compiler = [
+    "dagger-compiler",
+    "hilt-compiler"
+]
+test = [
+    "androidx-workmanager-test",
+    "dagger-test",
+    "room-test",
+    "junit",
+    "test-runner"
+]
