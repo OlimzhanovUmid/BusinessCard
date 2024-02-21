@@ -27,7 +27,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.SubcomposeAsyncImage
+import coil3.compose.SubcomposeAsyncImage
 import com.uolimzhanov.businesscard.model.BadgeEvent
 import com.uolimzhanov.businesscard.model.entity.Badge
 import com.uolimzhanov.businesscard.ui.theme.BusinessCardTheme
