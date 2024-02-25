@@ -1,6 +1,4 @@
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
-import java.io.FileInputStream
-import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.app)
@@ -76,6 +74,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     composeOptions {
@@ -102,7 +101,7 @@ dependencies {
     implementation(libs.accompanist.navigation)
 
     implementation(libs.timber)
-    implementation(libs.coil)
+    implementation(libs.bundles.coil)
 
     debugImplementation(libs.compose.ui.tooling)
     androidTestImplementation(libs.bundles.test)

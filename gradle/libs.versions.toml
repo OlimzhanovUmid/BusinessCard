@@ -67,7 +67,9 @@ room = { module = "androidx.room:room-ktx", version.ref = "androidx-room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "androidx-room" }
 room-test = { module = "androidx.room:room-testing", version.ref = "androidx-room" }
 
-coil = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+coil-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
+coil-svg = { module = "io.coil-kt.coil3:coil-svg", version.ref = "coil" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 junit = { module = "androidx.test.ext:junit-ktx", version.ref = "junit" }
 test-runner = { module = "androidx.test:runner", version.ref = "test-runner" }
@@ -96,4 +98,9 @@ test = [
     "room-test",
     "junit",
     "test-runner"
+]
+coil = [
+    "coil-compose",
+    "coil-okhttp",
+    "coil-svg"
 ]
