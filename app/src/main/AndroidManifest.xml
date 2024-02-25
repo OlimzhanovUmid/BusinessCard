@@ -38,6 +38,9 @@
             <meta-data
                 android:name="com.uolimzhanov.businesscard.startup.LogInitializer"
                 android:value="androidx.startup" />
+            <meta-data
+                android:name="com.uolimzhanov.businesscard.startup.CoilInitializer"
+                android:value="androidx.startup" />
         </provider>
     </application>
 </manifest>
