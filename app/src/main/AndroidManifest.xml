@@ -12,13 +12,11 @@
         android:localeConfig="@xml/locale_config"
         android:name=".App"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
         android:theme="@style/Theme.BusinessCard"
-        tools:targetApi="31">
+        tools:targetApi="tiramisu">
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.BusinessCard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
