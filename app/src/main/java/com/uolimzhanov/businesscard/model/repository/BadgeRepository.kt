@@ -1,6 +1,5 @@
 package com.uolimzhanov.businesscard.model.repository
 
-import androidx.room.Query
 import com.uolimzhanov.businesscard.model.database.BadgeDatabase
 import com.uolimzhanov.businesscard.model.entity.Badge
 import kotlinx.coroutines.flow.Flow

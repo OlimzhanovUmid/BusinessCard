@@ -23,8 +23,8 @@ class BadgeViewModel @Inject constructor(
 ) : ViewModel() {
     private val _sortOrder = MutableStateFlow(SortOrder.NAME)
     private val _badges = _sortOrder.
-    flatMapLatest { _sortType ->
-        when(_sortType) {
+    flatMapLatest { sortOrder ->
+        when(sortOrder) {
             SortOrder.NAME -> repository.getBadgesOrderedByName()
             SortOrder.NAME_ASC -> repository.getBadgesOrderedByNameAsc()
             SortOrder.DATE -> repository.getBadgesOrderedByDate()
@@ -68,7 +68,9 @@ class BadgeViewModel @Inject constructor(
                     )
                 }
             }
-            BadgeEvent.UpsertBadge -> TODO()
+            BadgeEvent.UpsertBadge -> {
+                // TODO
+            }
         }
     }
 }

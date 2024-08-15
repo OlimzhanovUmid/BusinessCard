@@ -9,7 +9,6 @@ import com.uolimzhanov.businesscard.model.entity.Badge
     entities = [Badge::class],
     version = 1
 )
-//@TypeConverters(LocalDateTimeConverter::class)
 abstract class BadgeDatabase : RoomDatabase() {
 
     abstract fun dao(): BadgeDao
