@@ -17,4 +17,4 @@ data class Badge(
     val isFavorite: Boolean,
     @PrimaryKey
     val id: Int? = 0
-): Parcelable
+) : Parcelable

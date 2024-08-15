@@ -56,7 +56,7 @@ fun HomeScreen(
     onEvent: (BadgeEvent) -> Unit,
     modifier: Modifier,
     paddingValues: PaddingValues
-){
+) {
     var badgeId by remember {
         mutableIntStateOf(0)
     }
@@ -68,7 +68,7 @@ fun HomeScreen(
         modifier = modifier,
         contentPadding = paddingValues,
         content = {
-            items(state.badges){badge ->
+            items(state.badges) { badge ->
                 BadgeItem(
                     badge = badge,
                     modifier = Modifier
@@ -88,14 +88,16 @@ fun HomeScreen(
             }
         }
     )
-    if(deleteBadgeDialog){
+    if (deleteBadgeDialog) {
         val badgeToDelete = state.badges.find { it.id == badgeId }
         AlertDialog(
             onDismissRequest = { deleteBadgeDialog = !deleteBadgeDialog },
             icon = { Icon(imageVector = Icons.Default.Warning, contentDescription = "") },
-            title = { Text(
-                text = stringResource(R.string.delete_badge),
-             ) },
+            title = {
+                Text(
+                    text = stringResource(R.string.delete_badge),
+                )
+            },
             confirmButton = {
                 Button(
                     onClick = {
@@ -133,15 +135,18 @@ fun HomeScreen(
                 var isRussian by remember {
                     mutableStateOf(false)
                 }
-                isRussian = when(Locale.getDefault().language) {
+                isRussian = when (Locale.getDefault().language) {
                     "ru" -> true
                     else -> false
                 }
                 Column(
                     modifier = modifier.aspectRatio(0.66f)
-                ){
-                    Box(modifier = Modifier.fillMaxSize()){
-                        Column(verticalArrangement = Arrangement.Center, modifier = Modifier.fillMaxSize()) {
+                ) {
+                    Box(modifier = Modifier.fillMaxSize()) {
+                        Column(
+                            verticalArrangement = Arrangement.Center,
+                            modifier = Modifier.fillMaxSize()
+                        ) {
                             SubcomposeAsyncImage(
                                 model = badgeToShow.badgeUrl,
                                 contentScale = ContentScale.FillHeight,
@@ -166,7 +171,7 @@ fun HomeScreen(
                                     .weight(6f)
                             )
                             Text(
-                                text = if(isRussian) badgeToShow.badgeNameRu else badgeToShow.badgeName,
+                                text = if (isRussian) badgeToShow.badgeNameRu else badgeToShow.badgeName,
                                 style = MaterialTheme.typography.titleLarge,
                                 textAlign = TextAlign.Center,
                                 overflow = TextOverflow.Ellipsis,
@@ -176,7 +181,7 @@ fun HomeScreen(
                                     .padding(4.dp)
                             )
                             Text(
-                                text = if(isRussian) badgeToShow.badgeDescriptionRu else badgeToShow.badgeDescription,
+                                text = if (isRussian) badgeToShow.badgeDescriptionRu else badgeToShow.badgeDescription,
                                 style = MaterialTheme.typography.titleMedium,
                                 textAlign = TextAlign.Center,
                                 overflow = TextOverflow.Ellipsis,
@@ -198,7 +203,7 @@ fun HomeScreen(
                         }
                         Icon(
                             imageVector =
-                            if(badgeToShow.isFavorite)
+                            if (badgeToShow.isFavorite)
                                 Icons.Filled.Favorite
                             else
                                 Icons.Outlined.HeartBroken,
@@ -213,5 +218,5 @@ fun HomeScreen(
                 }
             }
         }
-    } 
+    }
 }

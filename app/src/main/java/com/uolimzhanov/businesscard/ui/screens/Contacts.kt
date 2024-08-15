@@ -59,8 +59,10 @@ fun ContactsScreen(
         mutableStateOf(false)
     }
 
-    Column(modifier = modifier
-        .padding(paddingValues = paddingValues)) {
+    Column(
+        modifier = modifier
+            .padding(paddingValues = paddingValues)
+    ) {
         ElevatedCard(
             shape = RoundedCornerShape(15),
             modifier = Modifier
@@ -95,7 +97,7 @@ fun ContactsScreen(
                         fontWeight = FontWeight.Normal,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
-                        modifier = Modifier.clickable{
+                        modifier = Modifier.clickable {
                             context.startActivity(
                                 Intent(
                                     Intent.ACTION_VIEW,
@@ -244,7 +246,7 @@ fun ContactsScreen(
 @Preview(name = "Light", showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Preview(name = "Dark", showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun ContactsPreview(){
+fun ContactsPreview() {
     BusinessCardTheme {
         Surface {
             val user = User(

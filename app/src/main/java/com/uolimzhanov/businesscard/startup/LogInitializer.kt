@@ -2,8 +2,8 @@ package com.uolimzhanov.businesscard.startup
 
 import android.content.Context
 import androidx.startup.Initializer
-import timber.log.Timber
 import com.uolimzhanov.businesscard.BuildConfig
+import timber.log.Timber
 
 class LogInitializer : Initializer<Any> {
 

@@ -16,17 +16,18 @@ interface BadgeDao {
     suspend fun deleteBadge(badge: Badge)
 
     @Query("SELECT * FROM Badge WHERE id = :id")
-    fun getBadgeById(id: Int) : Badge?
+    fun getBadgeById(id: Int): Badge?
 
     @Query("SELECT * FROM Badge ORDER BY badgeName ASC")
-    fun getBadgesOrderedByName() : Flow<List<Badge>>
+    fun getBadgesOrderedByName(): Flow<List<Badge>>
 
     @Query("SELECT * FROM Badge ORDER BY badgeName DESC")
-    fun getBadgesOrderedByNameAsc() : Flow<List<Badge>>
+    fun getBadgesOrderedByNameAsc(): Flow<List<Badge>>
+
     @Query("SELECT * FROM Badge ORDER BY badgeDate ASC")
-    fun getBadgesOrderedByDate() : Flow<List<Badge>>
+    fun getBadgesOrderedByDate(): Flow<List<Badge>>
 
     @Query("SELECT * FROM Badge ORDER BY badgeDate DESC")
-    fun getBadgesOrderedByDateAsc() : Flow<List<Badge>>
+    fun getBadgesOrderedByDateAsc(): Flow<List<Badge>>
 
 }

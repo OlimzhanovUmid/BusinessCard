@@ -1,8 +1,5 @@
 package com.uolimzhanov.businesscard.ui.screens
 
-import com.uolimzhanov.businesscard.R
-import com.uolimzhanov.businesscard.model.entity.SortOrder
-
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -16,6 +13,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
+import com.uolimzhanov.businesscard.R
+import com.uolimzhanov.businesscard.model.entity.SortOrder
 
 @Composable
 fun SortOrderMenu(

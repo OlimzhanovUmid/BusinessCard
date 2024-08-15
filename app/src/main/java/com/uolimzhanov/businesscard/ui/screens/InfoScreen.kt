@@ -18,16 +18,18 @@ import com.uolimzhanov.businesscard.R
 fun InfoScreen(
     modifier: Modifier,
     paddingValues: PaddingValues
-){
+) {
     val scrollState = rememberScrollState()
-    Column (
+    Column(
         modifier = modifier
-            .fillMaxSize().padding(paddingValues)
+            .fillMaxSize()
+            .padding(paddingValues)
             .verticalScroll(scrollState),
         verticalArrangement = Arrangement.Top
-    )  {
+    ) {
         Text(
             text = stringResource(R.string.info_text),
-            Modifier.padding(all = 16.dp))
+            Modifier.padding(all = 16.dp)
+        )
     }
 }

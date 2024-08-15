@@ -63,7 +63,7 @@ fun AppContainer(
             LargeTopAppBar(
                 title = {
                     Text(
-                        text = stringResource(screens.first{
+                        text = stringResource(screens.first {
                             it.route == selectedDestination
                         }.textId)
                     )

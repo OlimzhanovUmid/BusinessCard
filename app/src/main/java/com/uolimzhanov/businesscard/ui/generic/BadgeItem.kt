@@ -42,8 +42,8 @@ fun BadgeItem(
     val isRussian = Locale.getDefault().language == "ru"
     Card(
         modifier = modifier.aspectRatio(0.66f)
-    ){
-        Box(modifier = Modifier.fillMaxSize()){
+    ) {
+        Box(modifier = Modifier.fillMaxSize()) {
             Column(verticalArrangement = Arrangement.Center, modifier = Modifier.fillMaxSize()) {
                 SubcomposeAsyncImage(
                     model = badge.badgeUrl,
@@ -69,7 +69,7 @@ fun BadgeItem(
                         .weight(6f)
                 )
                 Text(
-                    text = if(isRussian) badge.badgeNameRu else badge.badgeName,
+                    text = if (isRussian) badge.badgeNameRu else badge.badgeName,
                     style = MaterialTheme.typography.titleMedium,
                     textAlign = TextAlign.Center,
                     overflow = TextOverflow.Ellipsis,
@@ -91,15 +91,16 @@ fun BadgeItem(
             }
             Icon(
                 imageVector =
-                    if(badge.isFavorite)
-                        Icons.Filled.Favorite
-                    else
-                        Icons.Outlined.HeartBroken,
+                if (badge.isFavorite)
+                    Icons.Filled.Favorite
+                else
+                    Icons.Outlined.HeartBroken,
                 contentDescription = null,
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .padding(8.dp)
-                    .size(24.dp).clickable { onEvent(BadgeEvent.UnLikeBadge(badge)) }
+                    .size(24.dp)
+                    .clickable { onEvent(BadgeEvent.UnLikeBadge(badge)) }
             )
         }
     }
@@ -108,7 +109,7 @@ fun BadgeItem(
 @Preview(name = "Light", showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Preview(name = "Dark", showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun BadgeItemPreview(){
+fun BadgeItemPreview() {
     BusinessCardTheme {
         Surface {
             val badge = Badge(

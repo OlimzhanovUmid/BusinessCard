@@ -22,9 +22,8 @@ class BadgeViewModel @Inject constructor(
     private val repository: BadgeRepository
 ) : ViewModel() {
     private val _sortOrder = MutableStateFlow(SortOrder.NAME)
-    private val _badges = _sortOrder.
-    flatMapLatest { sortOrder ->
-        when(sortOrder) {
+    private val _badges = _sortOrder.flatMapLatest { sortOrder ->
+        when (sortOrder) {
             SortOrder.NAME -> repository.getBadgesOrderedByName()
             SortOrder.NAME_ASC -> repository.getBadgesOrderedByNameAsc()
             SortOrder.DATE -> repository.getBadgesOrderedByDate()
@@ -40,25 +39,33 @@ class BadgeViewModel @Inject constructor(
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), BadgeState())
 
     fun onEvent(event: BadgeEvent) {
-        when(event) {
+        when (event) {
             is BadgeEvent.DeleteBadge -> {
                 viewModelScope.launch {
                     repository.deleteBadge(event.badge)
                 }
             }
+
             BadgeEvent.HideBottomSheet -> {
-                _state.update { it.copy(
-                    isShowingBadge = false
-                ) }
+                _state.update {
+                    it.copy(
+                        isShowingBadge = false
+                    )
+                }
             }
+
             BadgeEvent.ShowBottomSheet -> {
-                _state.update { it.copy(
-                    isShowingBadge = true
-                ) }
+                _state.update {
+                    it.copy(
+                        isShowingBadge = true
+                    )
+                }
             }
+
             is BadgeEvent.SortBadges -> {
                 _sortOrder.value = event.sortOrder
             }
+
             is BadgeEvent.UnLikeBadge -> {
                 viewModelScope.launch {
                     repository.upsertBadge(
@@ -68,6 +75,7 @@ class BadgeViewModel @Inject constructor(
                     )
                 }
             }
+
             BadgeEvent.UpsertBadge -> {
                 // TODO
             }

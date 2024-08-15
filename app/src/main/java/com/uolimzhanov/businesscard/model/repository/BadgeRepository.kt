@@ -16,22 +16,23 @@ class BadgeRepository @Inject constructor(private val database: BadgeDatabase) {
         database.dao().deleteBadge(badge)
     }
 
-    fun getBadgeById(id: Int) : Badge? {
+    fun getBadgeById(id: Int): Badge? {
         return database.dao().getBadgeById(id)
     }
 
-    fun getBadgesOrderedByName() : Flow<List<Badge>> {
+    fun getBadgesOrderedByName(): Flow<List<Badge>> {
         return database.dao().getBadgesOrderedByName()
     }
 
-    fun getBadgesOrderedByNameAsc() : Flow<List<Badge>> {
+    fun getBadgesOrderedByNameAsc(): Flow<List<Badge>> {
         return database.dao().getBadgesOrderedByNameAsc()
     }
-    fun getBadgesOrderedByDate() : Flow<List<Badge>> {
+
+    fun getBadgesOrderedByDate(): Flow<List<Badge>> {
         return database.dao().getBadgesOrderedByDate()
     }
 
-    fun getBadgesOrderedByDateAsc() : Flow<List<Badge>> {
+    fun getBadgesOrderedByDateAsc(): Flow<List<Badge>> {
         return database.dao().getBadgesOrderedByDateAsc()
     }
 }
