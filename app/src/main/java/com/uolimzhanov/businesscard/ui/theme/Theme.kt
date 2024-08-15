@@ -53,19 +53,6 @@ fun BusinessCardTheme(
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
-    val view = LocalView.current
-    if (!view.isInEditMode) {
-        SideEffect {
-            val window = (view.context as Activity).window
-            window.statusBarColor = Color.TRANSPARENT
-            window.navigationBarColor = Color.TRANSPARENT
-
-            val insets = WindowCompat.getInsetsController(window, view)
-            insets.isAppearanceLightStatusBars = !darkTheme
-            insets.isAppearanceLightNavigationBars = !darkTheme
-        }
-    }
-
 
     MaterialTheme(
         colorScheme = colorScheme,
