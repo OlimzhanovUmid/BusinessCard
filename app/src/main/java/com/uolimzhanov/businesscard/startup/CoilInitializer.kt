@@ -31,7 +31,7 @@ class CoilInitializer : Initializer<Any> {
                 .logger(if (BuildConfig.DEBUG) DebugLogger() else null)
                 .diskCachePolicy(CachePolicy.ENABLED)
                 .diskCache(diskCache)
-                .dispatcher(Dispatchers.IO)
+                .coroutineContext(Dispatchers.IO)
                 .components {
                     add(SvgDecoder.Factory())
                 }
