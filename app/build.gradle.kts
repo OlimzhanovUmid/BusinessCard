@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.parcelize)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.dagger)
 }
 
@@ -76,11 +77,6 @@ android {
         compose = true
         buildConfig = true
     }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-    }
-
 }
 
 dependencies {
