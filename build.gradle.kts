@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.dagger) apply false
+    alias(libs.plugins.room) apply false
 }
 
 task("clean", Delete::class) {

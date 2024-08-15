@@ -12,7 +12,7 @@ import com.uolimzhanov.businesscard.model.entity.Badge
 //@TypeConverters(LocalDateTimeConverter::class)
 abstract class BadgeDatabase : RoomDatabase() {
 
-    abstract val dao: BadgeDao
+    abstract fun dao(): BadgeDao
 
     companion object {
         const val DATABASE_NAME = "badges_db"

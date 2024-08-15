@@ -17,7 +17,7 @@ androidx-navigation = "2.8.0-beta07"
 androidx-startup = "1.2.0-alpha02"
 androidx-splashscreen = "1.1.0-rc01"
 androidx-datastore = "1.1.1"
-androidx-room = "2.6.1"
+androidx-room = "2.7.0-alpha06"
 timber = "5.0.1"
 coil = "3.0.0-alpha10"
 junit = "1.2.1"
@@ -30,6 +30,7 @@ kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref =
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 dagger = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
+room = { id = "androidx.room", version.ref = "androidx-room" }
 
 [libraries]
 androidx-core = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }

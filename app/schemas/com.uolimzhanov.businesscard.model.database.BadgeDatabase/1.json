@@ -1,0 +1,72 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "a397f9ee25fff40d21b44927960f7222",
+    "entities": [
+      {
+        "tableName": "Badge",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`badgeUrl` TEXT NOT NULL, `badgeName` TEXT NOT NULL, `badgeNameRu` TEXT NOT NULL, `badgeDescription` TEXT NOT NULL, `badgeDescriptionRu` TEXT NOT NULL, `badgeDate` TEXT NOT NULL, `isFavorite` INTEGER NOT NULL, `id` INTEGER, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "badgeUrl",
+            "columnName": "badgeUrl",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "badgeName",
+            "columnName": "badgeName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "badgeNameRu",
+            "columnName": "badgeNameRu",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "badgeDescription",
+            "columnName": "badgeDescription",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "badgeDescriptionRu",
+            "columnName": "badgeDescriptionRu",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "badgeDate",
+            "columnName": "badgeDate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isFavorite",
+            "columnName": "isFavorite",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a397f9ee25fff40d21b44927960f7222')"
+    ]
+  }
+}
