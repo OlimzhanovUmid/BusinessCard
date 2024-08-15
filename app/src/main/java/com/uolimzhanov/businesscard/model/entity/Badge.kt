@@ -16,5 +16,5 @@ data class Badge(
     val badgeDate: String,
     val isFavorite: Boolean,
     @PrimaryKey
-    val id: Int? = 0
+    val id: Int
 ) : Parcelable

@@ -119,7 +119,8 @@ fun BadgeItemPreview() {
                 "Installed Android Studio",
                 "Установил Андроид студио",
                 "31.01.2021",
-                true
+                true,
+                1
             )
             BadgeItem(
                 badge = badge, onEvent = {}

@@ -75,11 +75,11 @@ fun HomeScreen(
                         .padding(2.dp)
                         .combinedClickable(
                             onClick = {
-                                badgeId = badge.id!!
+                                badgeId = badge.id
                                 onEvent(BadgeEvent.ShowBottomSheet)
                             },
                             onLongClick = {
-                                badgeId = badge.id!!
+                                badgeId = badge.id
                                 deleteBadgeDialog = true
                             }
                         ),

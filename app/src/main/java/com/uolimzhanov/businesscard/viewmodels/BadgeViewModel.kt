@@ -38,6 +38,12 @@ class BadgeViewModel @Inject constructor(
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), BadgeState())
 
+    init {
+        viewModelScope.launch {
+            repository.init()
+        }
+    }
+
     fun onEvent(event: BadgeEvent) {
         when (event) {
             is BadgeEvent.DeleteBadge -> {

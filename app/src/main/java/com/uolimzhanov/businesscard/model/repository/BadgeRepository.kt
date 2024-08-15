@@ -1,6 +1,7 @@
 package com.uolimzhanov.businesscard.model.repository
 
 import com.uolimzhanov.businesscard.model.database.BadgeDatabase
+import com.uolimzhanov.businesscard.model.database.PrepopulateDb
 import com.uolimzhanov.businesscard.model.entity.Badge
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -34,5 +35,11 @@ class BadgeRepository @Inject constructor(private val database: BadgeDatabase) {
 
     fun getBadgesOrderedByDateAsc(): Flow<List<Badge>> {
         return database.dao().getBadgesOrderedByDateAsc()
+    }
+
+    suspend fun init() {
+        PrepopulateDb.initialData.map {
+            database.dao().upsertBadge(it)
+        }
     }
 }
