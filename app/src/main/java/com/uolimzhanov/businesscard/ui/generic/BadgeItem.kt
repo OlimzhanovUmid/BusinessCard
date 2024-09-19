@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.outlined.HeartBroken
 import androidx.compose.material3.Card
@@ -27,7 +26,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil3.compose.SubcomposeAsyncImage
 import com.uolimzhanov.businesscard.model.BadgeEvent
 import com.uolimzhanov.businesscard.model.entity.Badge
 import com.uolimzhanov.businesscard.ui.theme.BusinessCardTheme
@@ -45,25 +43,9 @@ fun BadgeItem(
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             Column(verticalArrangement = Arrangement.Center, modifier = Modifier.fillMaxSize()) {
-                SubcomposeAsyncImage(
-                    model = badge.badgeUrl,
+                BadgeImage(
+                    badge = badge,
                     contentScale = ContentScale.FillBounds,
-                    error = {
-                        Box(
-                            modifier = Modifier.fillMaxSize(),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Icon(
-                                imageVector = Icons.Filled.AccountCircle,
-                                contentDescription = null,
-                                tint = MaterialTheme.colorScheme.onSecondaryContainer.copy(
-                                    alpha = 0.2f
-                                ),
-                                modifier = Modifier.fillMaxSize(0.7f)
-                            )
-                        }
-                    },
-                    contentDescription = null,
                     modifier = Modifier
                         .fillMaxSize()
                         .weight(6f)

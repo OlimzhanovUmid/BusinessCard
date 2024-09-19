@@ -15,7 +15,6 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.outlined.HeartBroken
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -43,10 +42,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import coil3.compose.SubcomposeAsyncImage
 import com.uolimzhanov.businesscard.R
 import com.uolimzhanov.businesscard.model.BadgeEvent
 import com.uolimzhanov.businesscard.model.entity.Badge
+import com.uolimzhanov.businesscard.ui.generic.BadgeImage
 import com.uolimzhanov.businesscard.ui.generic.BadgeItem
 import com.uolimzhanov.businesscard.viewmodels.BadgeState
 import java.util.Locale
@@ -140,25 +139,9 @@ fun HomeScreen(
                             verticalArrangement = Arrangement.Center,
                             modifier = Modifier.fillMaxSize()
                         ) {
-                            SubcomposeAsyncImage(
-                                model = it.badgeUrl,
+                            BadgeImage(
+                                badge = it,
                                 contentScale = ContentScale.FillHeight,
-                                error = {
-                                    Box(
-                                        modifier = Modifier.fillMaxSize(),
-                                        contentAlignment = Alignment.Center
-                                    ) {
-                                        Icon(
-                                            imageVector = Icons.Filled.AccountCircle,
-                                            contentDescription = null,
-                                            tint = MaterialTheme.colorScheme.onSecondaryContainer.copy(
-                                                alpha = 0.2f
-                                            ),
-                                            modifier = Modifier.fillMaxSize(0.7f)
-                                        )
-                                    }
-                                },
-                                contentDescription = null,
                                 modifier = Modifier
                                     .fillMaxSize()
                                     .weight(6f)
