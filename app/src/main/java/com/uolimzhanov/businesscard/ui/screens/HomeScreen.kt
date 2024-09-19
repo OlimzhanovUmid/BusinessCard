@@ -177,7 +177,7 @@ fun HomeScreen(
                     else -> false
                 }
                 Column(
-                    modifier = modifier.aspectRatio(0.66f)
+                    modifier = Modifier.aspectRatio(0.66f)
                 ) {
                     Box(modifier = Modifier.fillMaxSize()) {
                         Column(
