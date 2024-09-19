@@ -8,6 +8,6 @@ sealed interface BadgeEvent {
     data class DeleteBadge(val badge: Badge) : BadgeEvent
     data class UnLikeBadge(val badge: Badge) : BadgeEvent
     data class SortBadges(val sortOrder: SortOrder) : BadgeEvent
-    data object ShowBottomSheet : BadgeEvent
+    data class ShowBottomSheet(val badge: Badge) : BadgeEvent
     data object HideBottomSheet : BadgeEvent
 }

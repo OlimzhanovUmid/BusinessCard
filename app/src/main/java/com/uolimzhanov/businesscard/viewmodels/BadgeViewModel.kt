@@ -60,9 +60,10 @@ class BadgeViewModel @Inject constructor(
                 }
             }
 
-            BadgeEvent.ShowBottomSheet -> {
+            is BadgeEvent.ShowBottomSheet -> {
                 _state.update {
                     it.copy(
+                        selectedBadge = event.badge,
                         isShowingBadge = true
                     )
                 }

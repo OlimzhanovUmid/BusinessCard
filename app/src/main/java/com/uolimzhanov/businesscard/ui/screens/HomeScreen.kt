@@ -6,7 +6,6 @@ import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -111,8 +110,7 @@ fun HomeScreen(
                             .padding(2.dp)
                             .combinedClickable(
                                 onClick = {
-                                    badgeId = badge.id
-                                    onEvent(BadgeEvent.ShowBottomSheet)
+                                    onEvent(BadgeEvent.ShowBottomSheet(badge))
                                 },
                                 onLongClick = {
                                     badgeId = badge.id
@@ -161,8 +159,7 @@ fun HomeScreen(
         skipPartiallyExpanded = true
     )
     if (state.isShowingBadge) {
-        val badgeToShow = state.badges.find { it.id == badgeId }
-        badgeToShow?.let {
+        state.selectedBadge?.let {
             ModalBottomSheet(
                 onDismissRequest = {
                     onEvent(BadgeEvent.HideBottomSheet)
@@ -185,7 +182,7 @@ fun HomeScreen(
                             modifier = Modifier.fillMaxSize()
                         ) {
                             SubcomposeAsyncImage(
-                                model = badgeToShow.badgeUrl,
+                                model = it.badgeUrl,
                                 contentScale = ContentScale.FillHeight,
                                 error = {
                                     Box(
@@ -208,7 +205,7 @@ fun HomeScreen(
                                     .weight(6f)
                             )
                             Text(
-                                text = if (isRussian) badgeToShow.badgeNameRu else badgeToShow.badgeName,
+                                text = if (isRussian) it.badgeNameRu else it.badgeName,
                                 style = MaterialTheme.typography.titleLarge,
                                 textAlign = TextAlign.Center,
                                 overflow = TextOverflow.Ellipsis,
@@ -218,7 +215,7 @@ fun HomeScreen(
                                     .padding(4.dp)
                             )
                             Text(
-                                text = if (isRussian) badgeToShow.badgeDescriptionRu else badgeToShow.badgeDescription,
+                                text = if (isRussian) it.badgeDescriptionRu else it.badgeDescription,
                                 style = MaterialTheme.typography.titleMedium,
                                 textAlign = TextAlign.Center,
                                 overflow = TextOverflow.Ellipsis,
@@ -228,7 +225,7 @@ fun HomeScreen(
                                     .padding(4.dp)
                             )
                             Text(
-                                text = badgeToShow.badgeDate,
+                                text = it.badgeDate,
                                 style = MaterialTheme.typography.bodyMedium,
                                 textAlign = TextAlign.Center,
                                 overflow = TextOverflow.Ellipsis,
@@ -239,8 +236,7 @@ fun HomeScreen(
                             )
                         }
                         Icon(
-                            imageVector =
-                            if (badgeToShow.isFavorite)
+                            imageVector = if (it.isFavorite)
                                 Icons.Filled.Favorite
                             else
                                 Icons.Outlined.HeartBroken,
@@ -249,7 +245,7 @@ fun HomeScreen(
                                 .align(Alignment.TopEnd)
                                 .padding(8.dp)
                                 .size(24.dp)
-                                .clickable { onEvent(BadgeEvent.UnLikeBadge(badgeToShow)) }
+                                .clickable { onEvent(BadgeEvent.UnLikeBadge(it)) }
                         )
                     }
                 }
