@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.android.app)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.dagger)
@@ -100,6 +101,7 @@ dependencies {
     implementation(libs.room)
     ksp(libs.room.compiler)
     implementation(libs.accompanist.navigation)
+    implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.timber)
     implementation(libs.bundles.coil)

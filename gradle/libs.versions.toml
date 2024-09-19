@@ -4,6 +4,7 @@ sdk-target = "35"
 agp = "8.6.1"
 kotlin = "2.0.20"
 ksp = "2.0.20-1.0.25"
+kotlinx-serialization = "1.7.2"
 compose = "1.7.2"
 compose-m3 = "1.3.0"
 accompanist = "0.35.0-alpha"
@@ -27,6 +28,7 @@ test-runner = "1.6.2"
 android-app = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 dagger = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
@@ -61,6 +63,8 @@ dagger-test-compiler = { module = "com.google.dagger:hilt-android-compiler", ver
 hilt-navigation = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "dagger-hilt" }
 hilt-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "dagger-hilt" }
 hilt-workmanager = { module = "androidx.hilt:hilt-work", version.ref = "dagger-hilt" }
+
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 
 room = { module = "androidx.room:room-ktx", version.ref = "androidx-room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "androidx-room" }
