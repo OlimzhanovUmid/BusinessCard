@@ -19,7 +19,7 @@ import com.uolimzhanov.businesscard.model.repository.UserRepository
 import com.uolimzhanov.businesscard.ui.screens.ContactsScreen
 import com.uolimzhanov.businesscard.ui.screens.HomeScreen
 import com.uolimzhanov.businesscard.ui.screens.InfoScreen
-import com.uolimzhanov.businesscard.ui.screens.Screen
+import com.uolimzhanov.businesscard.ui.screens.Screens
 import com.uolimzhanov.businesscard.viewmodels.BadgeViewModel
 
 /**
@@ -30,8 +30,7 @@ fun NavGraphBuilder.mainNavGraph(
     paddingValues: PaddingValues,
     scrollBehavior: TopAppBarScrollBehavior
 ) {
-    composable(
-        route = Screen.Home.route,
+    composable<Screens.Home>(
         enterTransition = { fadeIn(animationSpec = tween(500)) },
         exitTransition = { fadeOut(animationSpec = tween(500)) }
     ) {
@@ -48,8 +47,7 @@ fun NavGraphBuilder.mainNavGraph(
             scrollBehavior = scrollBehavior
         )
     }
-    composable(
-        route = Screen.Info.route,
+    composable<Screens.Info>(
         enterTransition = { fadeIn(animationSpec = tween(500)) },
         exitTransition = { fadeOut(animationSpec = tween(500)) }
     ) {
@@ -61,8 +59,7 @@ fun NavGraphBuilder.mainNavGraph(
             scrollBehavior = scrollBehavior
         )
     }
-    composable(
-        route = Screen.Contacts.route,
+    composable<Screens.Contacts>(
         enterTransition = { fadeIn(animationSpec = tween(500)) },
         exitTransition = { fadeOut(animationSpec = tween(500)) }
     ) {
