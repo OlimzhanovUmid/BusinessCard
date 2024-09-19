@@ -24,19 +24,26 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -52,10 +59,10 @@ import java.util.Locale
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    state: BadgeState,
-    onEvent: (BadgeEvent) -> Unit,
-    modifier: Modifier,
-    paddingValues: PaddingValues
+    modifier: Modifier = Modifier,
+    state: BadgeState = BadgeState(),
+    scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(),
+    onEvent: (BadgeEvent) -> Unit = {},
 ) {
     var badgeId by remember {
         mutableIntStateOf(0)
@@ -63,31 +70,61 @@ fun HomeScreen(
     var deleteBadgeDialog by remember {
         mutableStateOf(false)
     }
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(2),
-        modifier = modifier,
-        contentPadding = paddingValues,
-        content = {
-            items(state.badges) { badge ->
-                BadgeItem(
-                    badge = badge,
-                    modifier = Modifier
-                        .padding(2.dp)
-                        .combinedClickable(
-                            onClick = {
-                                badgeId = badge.id
-                                onEvent(BadgeEvent.ShowBottomSheet)
-                            },
-                            onLongClick = {
-                                badgeId = badge.id
-                                deleteBadgeDialog = true
-                            }
-                        ),
-                    onEvent = onEvent
+    var sortMenuExpanded by rememberSaveable {
+        mutableStateOf(false)
+    }
+
+    Column(modifier) {
+        LargeTopAppBar(
+            title = {
+                Text(
+                    text = stringResource(R.string.home)
                 )
+            },
+            modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+            scrollBehavior = scrollBehavior,
+            actions = {
+                Box {
+                    IconButton(onClick = { sortMenuExpanded = true }) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.sort_variant),
+                            contentDescription = null
+                        )
+                    }
+                    SortOrderMenu(
+                        isExpanded = sortMenuExpanded,
+                        selectedOrder = state.sortOrder,
+                        onDismiss = { sortMenuExpanded = false },
+                        onItemSelected = { onEvent(BadgeEvent.SortBadges(it)) }
+                    )
+                }
             }
-        }
-    )
+        )
+
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(2),
+            content = {
+                items(state.badges) { badge ->
+                    BadgeItem(
+                        badge = badge,
+                        modifier = Modifier
+                            .padding(2.dp)
+                            .combinedClickable(
+                                onClick = {
+                                    badgeId = badge.id
+                                    onEvent(BadgeEvent.ShowBottomSheet)
+                                },
+                                onLongClick = {
+                                    badgeId = badge.id
+                                    deleteBadgeDialog = true
+                                }
+                            ),
+                        onEvent = onEvent
+                    )
+                }
+            }
+        )
+    }
     if (deleteBadgeDialog) {
         val badgeToDelete = state.badges.find { it.id == badgeId }
         AlertDialog(
