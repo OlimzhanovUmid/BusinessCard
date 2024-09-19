@@ -17,10 +17,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material.icons.outlined.HeartBroken
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -33,7 +30,6 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -50,10 +46,10 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.SubcomposeAsyncImage
 import com.uolimzhanov.businesscard.R
 import com.uolimzhanov.businesscard.model.BadgeEvent
+import com.uolimzhanov.businesscard.model.entity.Badge
 import com.uolimzhanov.businesscard.ui.generic.BadgeItem
 import com.uolimzhanov.businesscard.viewmodels.BadgeState
 import java.util.Locale
-
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -62,13 +58,8 @@ fun HomeScreen(
     state: BadgeState = BadgeState(),
     scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(),
     onEvent: (BadgeEvent) -> Unit = {},
+    onDeleteBadge: (Badge) -> Unit = {}
 ) {
-    var badgeId by remember {
-        mutableIntStateOf(0)
-    }
-    var deleteBadgeDialog by remember {
-        mutableStateOf(false)
-    }
     var sortMenuExpanded by rememberSaveable {
         mutableStateOf(false)
     }
@@ -113,8 +104,7 @@ fun HomeScreen(
                                     onEvent(BadgeEvent.ShowBottomSheet(badge))
                                 },
                                 onLongClick = {
-                                    badgeId = badge.id
-                                    deleteBadgeDialog = true
+                                    onDeleteBadge(badge)
                                 }
                             ),
                         onEvent = onEvent
@@ -122,37 +112,6 @@ fun HomeScreen(
                 }
             }
         )
-    }
-    if (deleteBadgeDialog) {
-        val badgeToDelete = state.badges.find { it.id == badgeId }
-        AlertDialog(
-            onDismissRequest = { deleteBadgeDialog = !deleteBadgeDialog },
-            icon = { Icon(imageVector = Icons.Default.Warning, contentDescription = "") },
-            title = {
-                Text(
-                    text = stringResource(R.string.delete_badge),
-                )
-            },
-            confirmButton = {
-                Button(
-                    onClick = {
-                        badgeToDelete?.let { BadgeEvent.DeleteBadge(it) }
-                            ?.let { onEvent(it) }
-                        deleteBadgeDialog = !deleteBadgeDialog
-                    }
-                ) {
-                    Text(text = stringResource(R.string.yes))
-                }
-            },
-            dismissButton = {
-                Button(
-                    onClick = {
-                        deleteBadgeDialog = !deleteBadgeDialog
-                    }
-                ) {
-                    Text(text = stringResource(R.string.no))
-                }
-            })
     }
 
     val sheetState = rememberModalBottomSheetState(

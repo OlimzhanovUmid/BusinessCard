@@ -83,6 +83,7 @@ fun AppContainer() {
 
         NavHost(navController = navController, startDestination = Screens.Home) {
             mainNavGraph(
+                navController = navController,
                 scrollBehavior = scrollBehavior,
                 paddingValues = paddingValues,
             )
