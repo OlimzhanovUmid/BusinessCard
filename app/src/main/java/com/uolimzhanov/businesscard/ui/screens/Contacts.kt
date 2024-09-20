@@ -5,15 +5,12 @@ import android.content.res.Configuration
 import android.net.Uri
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -21,8 +18,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Phone
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -62,9 +57,6 @@ fun ContactsScreen(
     scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 ) {
     val context = LocalContext.current
-    var dropdownMenuState by remember {
-        mutableStateOf(false)
-    }
 
     Column(
         modifier = modifier
@@ -124,75 +116,8 @@ fun ContactsScreen(
                 },
                 trailingContent = {
                     Column(verticalArrangement = Arrangement.SpaceEvenly) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.telegram),
-                            contentDescription = stringResource(R.string.telegram_account),
-                            modifier = Modifier
-                                .size(24.dp)
-                                .clickable {
-                                    context.startActivity(
-                                        Intent(
-                                            Intent.ACTION_VIEW,
-                                            Uri.parse("http://www.telegram.me/${user.telegram}")
-                                        )
-                                    )
-                                }
-                        )
-                        Spacer(modifier = Modifier.height(4.dp))
-                        Icon(
-                            imageVector = Icons.Outlined.Email,
-                            contentDescription = stringResource(R.string.email),
-                            modifier = Modifier
-                                .size(24.dp)
-                                .clickable {
-                                    context.startActivity(
-                                        Intent.createChooser(
-                                            Intent().apply {
-                                                action = Intent.ACTION_SEND
-                                                selector = Intent(
-                                                    Intent.ACTION_SENDTO,
-                                                    Uri.parse("mailto:")
-                                                )
-                                                putExtra(Intent.EXTRA_EMAIL, arrayOf(user.email))
-                                                putExtra(Intent.EXTRA_SUBJECT, user.email)
-                                            },
-                                            user.email
-                                        )
-                                    )
-                                }
-                        )
-                        Spacer(modifier = Modifier.height(4.dp))
-                        Icon(
-                            imageVector = Icons.Outlined.Phone,
-                            contentDescription = stringResource(R.string.phone),
-                            modifier = Modifier
-                                .size(24.dp)
-                                .clickable {
-                                    context.startActivity(
-                                        Intent(
-                                            Intent.ACTION_DIAL,
-                                            Uri.parse("tel:${user.phoneNumber}")
-                                        )
-                                    )
-                                }
-                        )
-                    }
-                    DropdownMenu(
-                        expanded = dropdownMenuState,
-                        onDismissRequest = { dropdownMenuState = !dropdownMenuState }
-                    ) {
-                        DropdownMenuItem(
-                            leadingIcon = {
-                                Icon(
-                                    painter = painterResource(id = R.drawable.telegram),
-                                    contentDescription = stringResource(R.string.telegram_account),
-                                    modifier = Modifier
-                                        .size(24.dp)
-                                )
-                            },
-                            text = {
-                                Text(text = stringResource(R.string.telegram_account))
-                            }, onClick = {
+                        IconButton(
+                            onClick = {
                                 context.startActivity(
                                     Intent(
                                         Intent.ACTION_VIEW,
@@ -200,17 +125,14 @@ fun ContactsScreen(
                                     )
                                 )
                             }
-                        )
-                        DropdownMenuItem(
-                            leadingIcon = {
-                                Icon(
-                                    imageVector = Icons.Outlined.Email,
-                                    contentDescription = stringResource(R.string.email),
-                                    modifier = Modifier
-                                        .size(24.dp)
-                                )
-                            },
-                            text = { Text(text = stringResource(R.string.email)) },
+                        ) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.telegram),
+                                contentDescription = stringResource(R.string.telegram_account),
+                                modifier = Modifier.size(28.dp)
+                            )
+                        }
+                        IconButton(
                             onClick = {
                                 context.startActivity(
                                     Intent.createChooser(
@@ -227,17 +149,14 @@ fun ContactsScreen(
                                     )
                                 )
                             }
-                        )
-                        DropdownMenuItem(
-                            leadingIcon = {
-                                Icon(
-                                    imageVector = Icons.Outlined.Phone,
-                                    contentDescription = stringResource(R.string.phone),
-                                    modifier = Modifier
-                                        .size(24.dp)
-                                )
-                            },
-                            text = { Text(text = stringResource(R.string.phone)) },
+                        ) {
+                            Icon(
+                                imageVector = Icons.Outlined.Email,
+                                contentDescription = stringResource(R.string.email),
+                                modifier = Modifier.size(28.dp)
+                            )
+                        }
+                        IconButton(
                             onClick = {
                                 context.startActivity(
                                     Intent(
@@ -246,13 +165,15 @@ fun ContactsScreen(
                                     )
                                 )
                             }
-                        )
+                        ) {
+                            Icon(
+                                imageVector = Icons.Outlined.Phone,
+                                contentDescription = stringResource(R.string.phone),
+                                modifier = Modifier.size(28.dp)
+                            )
+                        }
                     }
-                },
-                modifier = Modifier.combinedClickable(
-                    onClick = { },
-                    onLongClick = { dropdownMenuState = !dropdownMenuState },
-                )
+                }
             )
         }
     }
