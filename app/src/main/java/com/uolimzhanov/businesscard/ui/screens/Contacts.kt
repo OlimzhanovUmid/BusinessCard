@@ -1,13 +1,7 @@
 package com.uolimzhanov.businesscard.ui.screens
 
-import android.content.Intent
-import android.content.res.Configuration
-import android.net.Uri
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -30,10 +24,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -43,13 +33,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.uolimzhanov.businesscard.R
+import com.uolimzhanov.businesscard.extensions.dialNumber
+import com.uolimzhanov.businesscard.extensions.openLink
+import com.uolimzhanov.businesscard.extensions.openTelegram
+import com.uolimzhanov.businesscard.extensions.sendEmails
 import com.uolimzhanov.businesscard.model.entity.User
 import com.uolimzhanov.businesscard.ui.theme.BusinessCardTheme
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ContactsScreen(
     modifier: Modifier = Modifier,
@@ -64,9 +58,7 @@ fun ContactsScreen(
         LargeTopAppBar(
             scrollBehavior = scrollBehavior,
             title = {
-                Text(
-                    text = stringResource(R.string.contacts)
-                )
+                Text(stringResource(R.string.contacts))
             },
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         )
@@ -84,7 +76,6 @@ fun ContactsScreen(
                         modifier = Modifier
                             .size(96.dp)
                             .clip(CircleShape)
-
                     )
                 },
                 headlineContent = {
@@ -105,12 +96,7 @@ fun ContactsScreen(
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                         modifier = Modifier.clickable {
-                            context.startActivity(
-                                Intent(
-                                    Intent.ACTION_VIEW,
-                                    Uri.parse("https://g.dev/uolimzhanov")
-                                )
-                            )
+                            context.openLink("https://g.dev/uolimzhanov")
                         }
                     )
                 },
@@ -118,12 +104,7 @@ fun ContactsScreen(
                     Column(verticalArrangement = Arrangement.SpaceEvenly) {
                         IconButton(
                             onClick = {
-                                context.startActivity(
-                                    Intent(
-                                        Intent.ACTION_VIEW,
-                                        Uri.parse("http://www.telegram.me/${user.telegram}")
-                                    )
-                                )
+                                context.openTelegram(user.telegram)
                             }
                         ) {
                             Icon(
@@ -134,20 +115,7 @@ fun ContactsScreen(
                         }
                         IconButton(
                             onClick = {
-                                context.startActivity(
-                                    Intent.createChooser(
-                                        Intent().apply {
-                                            action = Intent.ACTION_SEND
-                                            selector = Intent(
-                                                Intent.ACTION_SENDTO,
-                                                Uri.parse("mailto:")
-                                            )
-                                            putExtra(Intent.EXTRA_EMAIL, arrayOf(user.email))
-                                            putExtra(Intent.EXTRA_SUBJECT, user.email)
-                                        },
-                                        user.email
-                                    )
-                                )
+                                context.sendEmails(arrayOf(user.email))
                             }
                         ) {
                             Icon(
@@ -158,12 +126,7 @@ fun ContactsScreen(
                         }
                         IconButton(
                             onClick = {
-                                context.startActivity(
-                                    Intent(
-                                        Intent.ACTION_DIAL,
-                                        Uri.parse("tel:${user.phoneNumber}")
-                                    )
-                                )
+                                context.dialNumber(user.phoneNumber)
                             }
                         ) {
                             Icon(
@@ -180,8 +143,7 @@ fun ContactsScreen(
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview(name = "Light", showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Preview(name = "Dark", showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@PreviewLightDark
 @Composable
 fun ContactsPreview() {
     BusinessCardTheme {
