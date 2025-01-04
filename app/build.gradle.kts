@@ -47,12 +47,9 @@ android {
         }
         release {
             signingConfig = signingConfigs.getByName("release")
-            postprocessing {
-                isRemoveUnusedCode = true
-                isRemoveUnusedResources = true
-                isObfuscate = true
-                isOptimizeCode = true
-            }
+            isMinifyEnabled = true
+            isShrinkResources = true
+
             proguardFiles(
                 getDefaultProguardFile("proguard-defaults.txt"),
                 "proguard-rules.pro"
@@ -68,7 +65,6 @@ android {
             }
         }
     }
-
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -86,27 +82,18 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.core)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.lifecycle)
-    implementation(libs.androidx.navigation)
-    implementation(libs.androidx.startup)
-    implementation(libs.androidx.workmanager)
-    implementation(libs.androidx.splashscreen)
-    implementation(libs.androidx.datastore)
-
+    implementation(libs.bundles.android)
     implementation(libs.bundles.compose)
+    implementation(libs.bundles.coil)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.timber)
+
     implementation(libs.bundles.dagger.hilt)
     ksp(libs.bundles.dagger.hilt.compiler)
+
     implementation(libs.room)
     ksp(libs.room.compiler)
-    implementation(libs.accompanist.navigation)
-    implementation(libs.kotlinx.serialization.json)
-
-    implementation(libs.timber)
-    implementation(libs.bundles.coil)
 
     debugImplementation(libs.compose.ui.tooling)
     androidTestImplementation(libs.bundles.test)
-    kspAndroidTest(libs.dagger.test.compiler)
 }
