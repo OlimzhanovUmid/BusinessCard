@@ -5,11 +5,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.WindowCompat
+import com.uolimzhanov.businesscard.di.allModules
 import com.uolimzhanov.businesscard.ui.AppContainer
 import com.uolimzhanov.businesscard.ui.theme.BusinessCardTheme
-import dagger.hilt.android.AndroidEntryPoint
+import org.koin.compose.KoinApplication
 
-@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,8 +17,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            BusinessCardTheme {
-                AppContainer()
+            KoinApplication(application = { modules(allModules) }) {
+                BusinessCardTheme {
+                    AppContainer()
+                }
             }
         }
     }
