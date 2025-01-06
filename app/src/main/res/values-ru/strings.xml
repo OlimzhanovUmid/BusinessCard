@@ -7,7 +7,7 @@
     <string name="phone">Телефон</string>
     <string name="email">Почта</string>
     <string name="telegram_account">Телеграм аккаунт</string>
-    <string name="info_text">Это приложение было создано с использованием Jetpack Compose, Room,  Dagger-Health, Coil и MVVM</string>
+    <string name="info_text">Это приложение было создано с использованием Jetpack Compose, Room,  Koin, Coil и MVVM</string>
     <string name="delete_badge">Вы хотите удалить ваш значок?</string>
     <string name="home">Домашняя</string>
     <string name="info">Инфо</string>
