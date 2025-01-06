@@ -85,6 +85,7 @@ dependencies {
     implementation(libs.bundles.android)
     implementation(libs.bundles.compose)
     implementation(libs.bundles.coil)
+    implementation(libs.bundles.koin)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.timber)
 
