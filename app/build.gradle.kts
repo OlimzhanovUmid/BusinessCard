@@ -7,7 +7,6 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.dagger)
     alias(libs.plugins.room)
 }
 
@@ -88,9 +87,6 @@ dependencies {
     implementation(libs.bundles.koin)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.timber)
-
-    implementation(libs.bundles.dagger.hilt)
-    ksp(libs.bundles.dagger.hilt.compiler)
 
     implementation(libs.room)
     ksp(libs.room.compiler)
