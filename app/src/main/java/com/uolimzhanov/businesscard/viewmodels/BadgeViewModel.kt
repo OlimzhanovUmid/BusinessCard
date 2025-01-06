@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.uolimzhanov.businesscard.model.BadgeEvent
 import com.uolimzhanov.businesscard.model.entity.SortOrder
 import com.uolimzhanov.businesscard.model.repository.BadgeRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -14,11 +13,9 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @OptIn(ExperimentalCoroutinesApi::class)
-@HiltViewModel
-class BadgeViewModel @Inject constructor(
+class BadgeViewModel(
     private val repository: BadgeRepository
 ) : ViewModel() {
     private val _sortOrder = MutableStateFlow(SortOrder.NAME)

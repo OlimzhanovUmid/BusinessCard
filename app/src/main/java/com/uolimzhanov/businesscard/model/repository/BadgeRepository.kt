@@ -4,11 +4,8 @@ import com.uolimzhanov.businesscard.model.database.BadgeDatabase
 import com.uolimzhanov.businesscard.model.database.PrepopulateDb
 import com.uolimzhanov.businesscard.model.entity.Badge
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class BadgeRepository @Inject constructor(private val database: BadgeDatabase) {
+class BadgeRepository(private val database: BadgeDatabase) {
     suspend fun upsertBadge(badge: Badge) {
         database.dao().upsertBadge(badge)
     }
