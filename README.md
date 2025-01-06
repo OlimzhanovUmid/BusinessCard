@@ -8,10 +8,10 @@ Go to the [Releases](https://github.com/OlimzhanovUmid/BusinessCard/releases/) t
 
 ## Tech stack & Open-source libraries
 
-- Minimum SDK level 25
+- Minimum SDK level 26
 - Material 3 design
 - 100% [Kotlin](https://kotlinlang.org/) based + [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous.
-- Hilt for dependency injection.
+- Koin for dependency injection.
 - JetPack
   - Compose - A modern toolkit for building native Android UI.
   - Lifecycle - dispose observing data when lifecycle state changes.
@@ -22,7 +22,6 @@ Go to the [Releases](https://github.com/OlimzhanovUmid/BusinessCard/releases/) t
   - MVVM Architecture (Declarative View - ViewModel - Model)
   - Repository pattern
 - Material Design & Animations
-- [Accompanist](https://github.com/google/accompanist) - A collection of extension libraries for Jetpack Compose.
 - [Coil]([Coil (coil-kt.github.io)](https://coil-kt.github.io/coil/)) - Image loading.
 - Room - For database.
 - [Timber](https://github.com/JakeWharton/timber) - logging.
@@ -30,11 +29,9 @@ Go to the [Releases](https://github.com/OlimzhanovUmid/BusinessCard/releases/) t
 
 ## To Do
 
+* Migrate to Compose Multiplatform
+
 * Fetching badges data directly from [g.dev](https://developers.google.com/) site
-
-* Prepopulating database with upserts instead of database file
-
-* Proper image caching
 
 * ...
 
