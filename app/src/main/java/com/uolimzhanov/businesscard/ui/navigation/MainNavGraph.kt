@@ -12,7 +12,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
@@ -27,6 +26,7 @@ import com.uolimzhanov.businesscard.ui.screens.HomeScreen
 import com.uolimzhanov.businesscard.ui.screens.InfoScreen
 import com.uolimzhanov.businesscard.ui.screens.Screens
 import com.uolimzhanov.businesscard.viewmodels.BadgeViewModel
+import org.koin.compose.viewmodel.koinViewModel
 
 /**
  * Created by uolimzhanov on 19.09.2024
@@ -41,7 +41,9 @@ fun NavGraphBuilder.mainNavGraph(
         enterTransition = { fadeIn(animationSpec = tween(500)) },
         exitTransition = { fadeOut(animationSpec = tween(500)) }
     ) { entry ->
-        val viewModel = hiltViewModel<BadgeViewModel>(entry)
+        val viewModel = koinViewModel<BadgeViewModel>(
+            viewModelStoreOwner = entry
+        )
         val state by viewModel.state.collectAsStateWithLifecycle()
 
         HomeScreen(
@@ -65,7 +67,9 @@ fun NavGraphBuilder.mainNavGraph(
         val parentEntry = remember(dialog) {
             navController.getBackStackEntry(Screens.Home)
         }
-        val viewModel = hiltViewModel<BadgeViewModel>(parentEntry)
+        val viewModel = koinViewModel<BadgeViewModel>(
+            viewModelStoreOwner = parentEntry
+        )
 
         BadgeDeletionDialog(
             badge = badge,
