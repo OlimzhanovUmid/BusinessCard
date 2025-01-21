@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Визитка</string>
+    <string name="sort_name">Имя</string>
+    <string name="sort_date">Дата</string>
+    <string name="sort_order">Порядок сортировки</string>
+    <string name="phone">Телефон</string>
+    <string name="email">Почта</string>
+    <string name="telegram_account">Телеграм аккаунт</string>
+    <string name="info_text">Это приложение было создано с использованием Jetpack Compose, Room,  Koin, Coil и MVVM</string>
+    <string name="delete_badge">Вы хотите удалить ваш значок?</string>
+    <string name="home">Домашняя</string>
+    <string name="info">Инфо</string>
+    <string name="contacts">Контакты</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+</resources>

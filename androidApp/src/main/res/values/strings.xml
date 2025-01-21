@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Business Card</string>
+    <string name="sort_name">Name</string>
+    <string name="sort_date">Date</string>
+    <string name="sort_order">Sort Order</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="telegram_account">Telegram account</string>
+    <string name="info_text">This app was created using Jetpack Compose, Room, Koin, Coil and MVVM</string>
+    <string name="delete_badge">Do you want to delete your badge?</string>
+    <string name="home">Home</string>
+    <string name="info">Info</string>
+    <string name="contacts">Contacts</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+</resources>

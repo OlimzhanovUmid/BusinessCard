@@ -13,4 +13,4 @@ dependencyResolutionManagement {
         maven(url = "https://www.jitpack.io")
     }
 }
-include(":app")
+include(":androidApp")
