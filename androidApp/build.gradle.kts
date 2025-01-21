@@ -3,7 +3,6 @@ import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 plugins {
     alias(libs.plugins.android.app)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.parcelize)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.compose.compiler)
